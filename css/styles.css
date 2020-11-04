@@ -1,0 +1,54 @@
+/* general style */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+/* top */
+header h1 {
+    font-family: 'Acme', sans-serif;
+    padding: 20px;
+    color: #1592ff;
+}
+.filtertype {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #1592ff;
+}
+.filtertype label {
+    color: white;
+    text-transform: uppercase;
+    padding-right: 10px;
+}
+
+/* primary */
+.primary {
+    padding: 20px;
+    flex-wrap: wrap;
+    display: flex;
+    flex-grow: 1;
+    background-color: #dddddd;
+    align-content: flex-start;
+}
+.icon {
+    flex-basis: calc(100% / 6 - 20px);
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+.icon i {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+.icon .gender {
+    text-transform: uppercase;
+    font-size: 16px;
+}
