@@ -101,21 +101,35 @@ $(document).ready( () => {
         const colori = [ 'blue', 'orange', 'purple'];
 //prendo referenze 
 //riferimento del main nel dom 
-const referenzadom = $('.primary');
+    const referenzadom = $('.primary');
 //stampare le icone a schermo creando una funzione che lo fa
 
 //stampaicone a colori con funzione 
-const stampaiconecolorate = coloraicone(icons,colori)
-stampaicone(stampaiconecolorate, referenzadom);
-console.log(stampaiconecolorate);
+    const stampaiconecolorate = coloraicone(icons,colori);
+    stampaicone(stampaiconecolorate, referenzadom);
+    console.log(stampaiconecolorate);
 
+//filter icon
+    const selezione = $('#type');
+    const types = getype(icons);
+//gen option
+    genOption(types, selezione);
+//event
+    selezione.change(() => {
+    const selected = selezione.val();
+    console.log(selected); 
 
-
+    const filteredicon = filtericon(stampaiconecolorate, selected);
+    stampaicone(filteredicon, referenzadom);
+})
 
 
 //SEZIONE DEDICATA ALLE FUNZIONI PRESENTI NEL JS
 //FUNZIONE STAMPA ICONE
-function stampaicone (icons,container) {
+
+function stampaicone (icons,container) {   
+    container.html('');
+
      icons.forEach(element => {
         const {family, prefix, name, colori, } = element;
 
@@ -138,25 +152,41 @@ function coloraicone (icons,colori) {
         return {
             ...element,
             colori: colori[indexType]
-        }
+        };
 
     });
     return stampaiconecolorate;
 }
 
 //FUNZIONE PER OTTENERE IL TYPE
-function getype(icons) {
+function getype(icons) { 
     const types = [];
 
     icons.forEach((element) => {
         if(!types.includes(element.type)) {
-           types.push(element.type) 
+           types.push(element.type);
         }
     });
     return types ; 
     
 } 
+//gen option
+function genOption(types, select) {
+    types.forEach((element)=>{
+        select.append(`<option value="${element}">${element}</option>`)
+    })
+}
+//filter icon
+function filtericon(stampaiconecolorate, selezione ) {
+    if (selezione === 'all' ) {
+        return stampaiconecolorate; 
+    } 
+    const filtered = stampaiconecolorate.filter((element)=> {
 
+        return element.type === selezione;
+    })
+    return filtered ;
+}
 
 
 
