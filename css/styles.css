@@ -43,6 +43,7 @@ header h1 {
     padding: 20px;
     text-align: center;
     border-radius: 5px;
+    margin: 10px;
 }
 .icon i {
     font-size: 38px;

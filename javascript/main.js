@@ -97,21 +97,67 @@ $(document).ready( () => {
                 family: 'fas',
             },
         ];
+//creo un array di colori 
+        const colori = [ 'blue', 'orange', 'purple'];
+//prendo referenze 
+//riferimento del main nel dom 
+const referenzadom = $('.primary');
+//stampare le icone a schermo creando una funzione che lo fa
+
+//stampaicone a colori con funzione 
+const stampaiconecolorate = coloraicone(icons,colori)
+stampaicone(stampaiconecolorate, referenzadom);
+console.log(stampaiconecolorate);
 
 
 
 
 
+//SEZIONE DEDICATA ALLE FUNZIONI PRESENTI NEL JS
+//FUNZIONE STAMPA ICONE
+function stampaicone (icons,container) {
+     icons.forEach(element => {
+        const {family, prefix, name, colori, } = element;
+
+        const html = `<div class="icon">
+        <i class="${family} ${prefix}${name}"
+        style="color: ${colori}"></i>  
+        <div class="gender">${name}</div>
+    </div>`;
+
+    container.append(html);
+     });
+}
+//FUNZIONE COLORA ICONE
+function coloraicone (icons,colori) {
+    //FUNZIONE INTERNA PER OTTENERE IL TYPE
+    const types = getype(icons);
+//assegna colore icone 
+    const stampaiconecolorate  = icons.map((element)=> {
+        const indexType = types.indexOf(element.type);
+        return {
+            ...element,
+            colori: colori[indexType]
+        }
+
+    });
+    return stampaiconecolorate;
+}
+
+//FUNZIONE PER OTTENERE IL TYPE
+function getype(icons) {
+    const types = [];
+
+    icons.forEach((element) => {
+        if(!types.includes(element.type)) {
+           types.push(element.type) 
+        }
+    });
+    return types ; 
+    
+} 
 
 
 
 
-
-
-
-
-
-
-
-
-    })
+ })
